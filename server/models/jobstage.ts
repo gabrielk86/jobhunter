@@ -1,10 +1,10 @@
-import client from "./index";
+import client from './index';
 
-exports.getAll = async (id) => {
+exports.getAll = async (id: number) => {
   // console.log('running query');
   const queryRes = await client.query(
-    "select * from jobstage where jobappid = $1",
-    [id]
+    'select * from jobstage where jobappid = $1',
+    [id],
   );
   // console.log(res.rows);
   const res = queryRes.rows.map((row) => {
@@ -20,7 +20,7 @@ exports.getAll = async (id) => {
 
 exports.getStage = async (stageid) => {
   // console.log('running a query for stageid', stageid);
-  const queryRes = await client.query("select * from jobstage where id = $1", [
+  const queryRes = await client.query('select * from jobstage where id = $1', [
     stageid,
   ]);
   // console.log(queryRes.rows);
