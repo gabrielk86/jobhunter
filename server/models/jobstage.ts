@@ -1,9 +1,9 @@
-const client = require("./index");
+import client from "./index";
 
 exports.getAll = async (id) => {
   // console.log('running query');
   const queryRes = await client.query(
-    'select * from jobstage where jobappid = $1',
+    "select * from jobstage where jobappid = $1",
     [id]
   );
   // console.log(res.rows);
@@ -20,7 +20,7 @@ exports.getAll = async (id) => {
 
 exports.getStage = async (stageid) => {
   // console.log('running a query for stageid', stageid);
-  const queryRes = await client.query('select * from jobstage where id = $1', [
+  const queryRes = await client.query("select * from jobstage where id = $1", [
     stageid,
   ]);
   // console.log(queryRes.rows);
@@ -50,7 +50,7 @@ exports.createStage = async (id, stage) => {
                 WHERE j.id = src.jobappid
                 RETURNING *;
                 `;
-  const values = [
+  const values: Array<any> = [
     new Date(Date.now()).toISOString(),
     stage.stage,
     stage.date,
